@@ -74,6 +74,7 @@ p {
 }
 
 .main-btn {
+  font-family: inherit;
   border: none;
   outline: none;
   margin-top: 18px;
@@ -156,4 +157,10 @@ p {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Links styled as buttons (menu + back links) */
+a.main-btn {
+  display: inline-block;
+  text-decoration: none;
 }

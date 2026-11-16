@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patch Notes v2.0</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* This page is long, so it needs to scroll */
+    body { overflow-y: auto; }
+    .screen { display: flex; padding: 32px 18px 48px; }
+    .card { text-align: left; }
+    .card h1, .card .center { text-align: center; }
+
+    .explain {
+      text-align: center;
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 0 0 22px;
+    }
+
+    .note {
+      margin: 0 0 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+    .note p { margin: 6px 0 0; font-size: 0.98rem; line-height: 1.55; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      color: #170718;
+    }
+    .tag.fixed { background: #9be7b0; }
+    .tag.added { background: #ffc2d1; }
+    .tag.improved { background: #b9a8ff; }
+    .tag.known { background: #ffd98a; }
+
+    .apology {
+      margin-top: 26px;
+      text-align: center;
+    }
+    .apology p { color: #ffffff; }
+
+    .attention-btn {
+      display: block;
+      width: 100%;
+      margin: 26px 0 0;
+      padding: 30px 20px;
+      font-size: 1.35rem;
+      border-radius: 28px;
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    .attention-btn:disabled { opacity: 0.7; animation: none; }
+
+    .status {
+      min-height: 3.2em;
+      margin-top: 14px;
+      text-align: center;
+      font-weight: 600;
+      color: #ffc2d1;
+    }
+
+    a.back {
+      display: block;
+      text-align: center;
+      margin: 18px auto 0;
+      width: fit-content;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 10px 25px rgba(255, 143, 171, 0.35); }
+      50% { box-shadow: 0 10px 45px rgba(255, 143, 171, 0.8); }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="screen">
+      <div class="card">
+        <p class="small-text center">Update available for A7la wa7da</p>
+        <h1>Patch Notes v2.0 🛠️</h1>
+
+        <p class="explain">
+          “Patch notes” are the little list an app shows after an update,
+          saying what got fixed. This is mine.
+        </p>
+
+        <div class="note">
+          <span class="tag fixed">Fixed</span>
+          <p>A serious bug where a work call took over our call time. Our time is our time.</p>
+        </div>
+
+        <div class="note">
+          <span class="tag fixed">Fixed</span>
+          <p>You feeling like you lost my attention. This should never have happened, and it won’t happen again.</p>
+        </div>
+
+        <div class="note">
+          <span class="tag improved">Improved</span>
+          <p>Priority settings. You are now permanently set to “most important”.</p>
+        </div>
+
+        <div class="note">
+          <span class="tag added">New</span>
+          <p>The Full Attention Button (at the bottom). Press it any time and my phone buzzes right away.</p>
+        </div>
+
+        <div class="note">
+          <span class="tag known">Known issue</span>
+          <p>Developer is still weird. Won’t fix, it’s a feature.</p>
+        </div>
+
+        <div class="apology">
+          <h2>I’m sorry ❤️</h2>
+          <p>
+            You deserved my full attention that night, and you didn’t get it.
+            I hate that I made you feel that way. From now on, you always come first.
+          </p>
+        </div>
+
+        <button class="main-btn attention-btn" id="attention-btn">
+          Full Attention Button
+        </button>
+        <p class="status" id="status">Press it whenever you need me. I’ll get it straight away.</p>
+
+        <a class="main-btn secondary-btn back" href="index.html">Back to menu</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const TOPIC = "patchnotes-329d83a129e3";
+    const btn = document.getElementById("attention-btn");
+    const statusText = document.getElementById("status");
+
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      statusText.textContent = "";
+
+      // Title/priority/tags go in the URL so the browser sends a simple
+      // request (no extra headers) — most reliable on phones.
+      const url = "https://ntfy.sh/" + TOPIC +
+        "?title=" + encodeURIComponent("Full Attention Button 🔔") +
+        "&priority=5&tags=heart";
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          body: "A7la wa7da pressed the button. She needs you. Go now ❤️"
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        btn.textContent = "Sent ❤️";
+        statusText.textContent = "Done. My phone just buzzed. I’m on my way.";
+      } catch (e) {
+        btn.textContent = "Full Attention Button";
+        statusText.textContent = "That didn’t go through. Check your internet and press again.";
+        btn.disabled = false;
+        return;
+      }
+
+      // Let her press again after a few seconds
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = "Full Attention Button";
+      }, 8000);
+    });
+  </script>
+</body>
+</html>

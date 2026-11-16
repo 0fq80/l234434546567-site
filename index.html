@@ -3,111 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Lamar</title>
-
+  <title>For A7la wa7da</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .menu-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 22px 20px;
+      font-size: 1.2rem;
+    }
+    .menu-btn span {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.75;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
-
   <main class="app">
-
-    <!-- Screen 1: Opening -->
-    <section class="screen active" id="screen-1">
+    <section class="screen active">
       <div class="card">
-        <p class="small-text">A tiny website for you</p>
-        <h1>Hey Lamar...</h1>
-        <p>
-          I know I keep telling you that I miss you so much,
-          so I thought I’d change things up a little and show you instead.
-        </p>
-        <button class="main-btn" onclick="goToScreen(2)">Start ❤️</button>
+        <p class="small-text">Hi A7la wa7da</p>
+        <h1>Pick one 👇</h1>
+        <p>Two little things I made for you. Tap one to open it.</p>
+
+        <a class="main-btn menu-btn" href="imissyou.html">
+          I miss you ❤️
+          <span>A tiny website about missing you</span>
+        </a>
+
+        <a class="main-btn secondary-btn menu-btn" href="patch-notes.html">
+          Full Attention Button 🔔
+          <span>An update, an apology, and a button</span>
+        </a>
       </div>
     </section>
-
-    <!-- Screen 2: Trick Question -->
-    <section class="screen" id="screen-2">
-      <div class="card">
-        <p class="small-text">Very important question...</p>
-        <h1>Who misses the other more?</h1>
-
-        <div class="button-row">
-          <button class="main-btn" onclick="chooseFhaid()">Fhaid</button>
-          <button class="main-btn secondary-btn" id="lamar-btn">Lamar</button>
-        </div>
-
-        <p class="hidden-message" id="correct-message">
-          Correct. Obviously.<br />
-          I miss you way more.
-        </p>
-
-        <button class="main-btn hidden" id="continue-btn" onclick="goToScreen(3)">
-          Continue
-        </button>
-      </div>
-    </section>
-
-    <!-- Screen 3: Distance -->
-    <section class="screen" id="screen-3">
-      <div class="card">
-        <p class="small-text">The annoying distance</p>
-        <h1>Kuwait 🇰🇼 ↔ Jeddah 🇸🇦</h1>
-
-        <p class="distance-number">Around 1,200 km apart...</p>
-        <p>which is rude, honestly.</p>
-
-        <p>
-          But somehow, you still feel close to me.
-        </p>
-
-        <button class="main-btn" onclick="goToScreen(4)">Keep going</button>
-      </div>
-    </section>
-
-    <!-- Screen 4: Reasons Generator -->
-    <section class="screen" id="screen-4">
-      <div class="card">
-        <p class="small-text">This button has work to do</p>
-        <h1>Reasons I miss you</h1>
-
-        <p>
-          I could list the reasons forever, so here’s a button that tries its best.
-        </p>
-
-        <div class="reason-box" id="reason-box">
-          Tap the button. I dare you.
-        </div>
-
-        <button class="main-btn" onclick="generateReason()">
-          Give me a reason
-        </button>
-
-        <button class="main-btn secondary-btn" onclick="goToScreen(5)">
-          One last thing
-        </button>
-      </div>
-    </section>
-
-    <!-- Screen 5: Final Message -->
-    <section class="screen" id="screen-5">
-      <div class="card">
-        <p class="small-text">One last thing...</p>
-        <h1>The distance is annoying...</h1>
-
-        <p>
-          but missing you just reminds me how much you mean to me.
-        </p>
-
-        <h2>I miss you, Lamar ❤️</h2>
-        <p class="signature">— Fhaid</p>
-
-        <button class="main-btn" onclick="goToScreen(1)">
-          Start again
-        </button>
-      </div>
-    </section>
-
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
